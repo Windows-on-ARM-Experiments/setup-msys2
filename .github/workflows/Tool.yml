@@ -16,7 +16,7 @@ jobs:
       jobs: ${{ steps.matrix.outputs.jobs }}
     steps:
     - id: matrix
-      uses: msys2/setup-msys2/matrix@main
+      uses: Windows-on-ARM-Experiments/setup-msys2/matrix@main
       with:
         systems: >-
           mingw32

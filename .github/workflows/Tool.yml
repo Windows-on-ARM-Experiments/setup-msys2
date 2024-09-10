@@ -21,6 +21,7 @@ jobs:
         systems: >-
           mingw32
           mingw64
+          mingwarm64
           ucrt64
           clang32
           clang64

@@ -62,6 +62,10 @@ jobs:
       run: |
         $env:MSYSTEM = 'MSYS'
         msys2 ./test.sh MSYS
+    - name: 🟩 test MINGWARM64
+      run: |
+        $env:MSYSTEM = 'MINGWARM64'
+        msys2 ./test.sh MINGWARM64
     - name: 🟦 test MINGW64
       run: |
         $env:MSYSTEM = 'MINGW64'
@@ -101,6 +105,11 @@ jobs:
       run: |
         set MSYSTEM=MSYS
         msys2 ./test.sh MSYS
+    - name: 🟩 test MINGWARM64
+      shell: cmd
+      run: |
+        set MSYSTEM=MINGWARM64
+        msys2 ./test.sh MINGWARM64
     - name: 🟦 test MINGW64
       shell: cmd
       run: |
@@ -144,6 +153,10 @@ jobs:
       run: msys2 ./test.sh MSYS
       env:
         MSYSTEM: MSYS
+    - name: 🟩 test MINGWARM64
+      run: msys2 ./test.sh MINGWARM64
+      env:
+        MSYSTEM: MINGWARM64
     - name: 🟦 test MINGW64
       run: msys2 ./test.sh MINGW64
       env:
@@ -220,7 +233,7 @@ jobs:
 
 
   install:
-    name: 🟦 mingw64 | install ${{ matrix.install }}
+    name: 🟩 mingwarm64 | install ${{ matrix.install }}
     needs: [cache]
     strategy:
       fail-fast: false
@@ -239,8 +252,8 @@ jobs:
       with:
         update: true
         install: ${{ matrix.install }}
-        msystem: mingw64
-    - run: msys2 ./test.sh mingw64
+        msystem: mingwarm64
+    - run: msys2 ./test.sh mingwarm64
 
 
   defaultclean:
@@ -454,7 +467,7 @@ jobs:
     - id: min
       uses: ./matrix
       with:
-        systems: 'mingw32 mingw64 ucrt64 clang64'
+        systems: 'mingw32 mingw64 mingwarm64 ucrt64 clang64'
 
 
   msystem:
